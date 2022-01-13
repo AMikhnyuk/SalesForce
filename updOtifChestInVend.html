@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Webix Library -->
+	<link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" type="text/css"> 
+	<script src="//cdn.webix.com/edge/webix.js" type="text/javascript"></script> 
+    
+    <title>updOtifChestInVend</title>
+</head>
+<body>
+    <script>
+		const percentFormat = (value) => value !== "" ? (value * 100).toFixed(1) + " %" : ""
+		const compare = (test, value, obj)=>{ 
+			if (test.toString().toLowerCase().indexOf(value.toLowerCase()) == 0) return true;
+			return false;
+			};
+        webix.ready(function() {
+            webix.ui({
+				view:"scrollview",
+				scroll:"x",
+				body:{
+					rows:[
+						{
+							view:"treetable",
+							localId:"treetable",
+							autowidth:true,
+							select:true,
+							columns:[
+								{
+								id:"value",
+								header:[{content:"textFilter", compare}],
+								width:300,
+									template:"{common.treetable()} #value#",
+									
+								},
+								{ id:"LastWeekUnitsOrdered", header:"Last Week Units Ordered", adjust:"header", sort:"int"},
+								{ id:"LastWeekUnitsReceived", header:"Last Week Units Received", adjust:"header", sort:"int"},
+								{ id:"LastWeekUnitsReceivedOnTime", header:"Last Week Units Received On Time", adjust:"header", sort:"int"},
+								{ id:"LastWeekFillRate", header:"Last Week Fill Rate", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"LastWeekOnTime", header:"Last Week On Time %", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"MTDUnitsOrdered", header:"MTD Units Ordered", adjust:"header", sort:"int"},
+								{ id:"MTDUnitsReceived", header:"MTD Units Received", adjust:"header", sort:"int"},
+								{ id:"MTDUnitsReceivedOnTime", header:"MTD Units Received On Time", adjust:"header", sort:"int"},
+								{ id:"MTDFillRate", header:"MTD Fill Rate", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"MTDOnTime", header:"MTD On Time %", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"QTDUnitsOrdered", header:"QTD Units Ordered", adjust:"header", sort:"int"},
+								{ id:"QTDUnitsReceived", header:"QTD Units Received", adjust:"header", sort:"int"},
+								{ id:"QTDUnitsReceivedOnTime", header:"QTD Units Received On Time", adjust:"header", sort:"int"},
+								{ id:"QTDFillRate", header:"QTD Fill Rate", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"QTDOnTime", header:"QTD On Time %", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"YTDUnitsOrdered", header:"YTD Units Ordered", adjust:"header", sort:"int"},
+								{ id:"YTDUnitsReceived", header:"YTD Units Received", adjust:"header", sort:"int"},
+								{ id:"YTDUnitsReceivedOnTime", header:"YTD Units Received On Time", adjust:"header", sort:"int"},
+								{ id:"YTDFillRate", header:"YTD Fill Rate", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"YTDOnTime", header:"YTD On Time %", adjust:"header", format:percentFormat, sort:"int"},
+								{ id:"WeeksRollingUnitsOrdered", header:"52 Weeks Rolling Units Ordered", adjust:"header", sort:"int"},
+								{ id:"WeeksRollingUnitsReceived", header:"52 Weeks Rolling Units Received", adjust:"header", sort:"int"},
+								{ id:"WeeksRollingUnitsReceivedOnTime", header:"52 Weeks Rolling Units Received On Time", adjust:"header", sort:"int"},
+								{ id:"WeeksRollingFillRate", header:"52 Weeks Rolling Fill Rate", adjust:"header", format:percentFormat, sort:"int"},
+								
+
+							],    
+							url:"./updOtifChestInVend.json",
+							on:{
+								onAfterLoad(data){
+									this.openAll()
+								}
+							},
+						}
+					]
+				}
+		});
+        });
+    </script>
+</body>
+</html>
